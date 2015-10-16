@@ -1,0 +1,13 @@
+XDC_open() {
+    GEL_ProjectLoad("/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core4/Debug/configPkg/package/configPkg.pjt");
+    GEL_ProjectLoad("/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core4/Debug/configPkg/package/cfg/app_xe66.pjt");
+    GEL_ProjectSetActive("/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core4/Debug/configPkg/package/cfg/app_xe66.pjt");
+}
+XDC_close() {
+    GEL_ProjectClose("/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core4/Debug/configPkg/package/configPkg.pjt");
+    GEL_ProjectClose("/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core4/Debug/configPkg/package/cfg/app_xe66.pjt");
+}
+menuitem "XDC Package"
+hotmenu load_executable () { GEL_Load("/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core4/Debug/configPkg/app.xe66"); }
+hotmenu open_project () { XDC_open(); }
+hotmenu close_project () { XDC_close(); }
