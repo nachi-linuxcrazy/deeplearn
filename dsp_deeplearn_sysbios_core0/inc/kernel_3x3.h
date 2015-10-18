@@ -16,6 +16,7 @@
 #ifndef KERNEL_3_3_H
 #define KERNEL_3_3_H
 
+#pragma DATA_SECTION(kernel_3x3, ".local_ram")
 const char kernel_3x3[50][9] = {
  {0, 5, -22,\
  -14, 40, -9,\

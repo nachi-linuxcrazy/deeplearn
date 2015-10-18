@@ -1,6 +1,6 @@
 # FIXED
 
-deep_learning.obj: ../deep_learning.c
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/deep_learning.c
 deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/stdio.h
 deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/linkage.h
 deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/stdarg.h
@@ -12,7 +12,7 @@ deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/elfna
 deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/mathf.h
 deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/float.h
 deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/mathl.h
-deep_learning.obj: ../user_config.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/user_config.h
 deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_tsc.h
 deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/soc.h
 deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/cslr.h
@@ -27,6 +27,11 @@ deep_learning.obj: /opt/ti/xdctools_3_24_06_63/packages/ti/targets/std.h
 deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl.h
 deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_types.h
 deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_error.h
+deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/c6x.h
+deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/vect.h
+deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_cacheAux.h
+deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_cache.h
+deep_learning.obj: /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/cslr_cgem.h
 deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/inc/imglib.h
 deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_boundary_16s/IMG_boundary_16s.h
 deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_boundary_16s/c66/IMG_boundary_16s.h
@@ -154,18 +159,18 @@ deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_dem
 deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_demux_le16_16/c66/IMG_yc_demux_le16_16.h
 deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_demux_le16_8/IMG_yc_demux_le16_8.h
 deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_demux_le16_8/c66/IMG_yc_demux_le16_8.h
-deep_learning.obj: ../DSP_maxval.h
-deep_learning.obj: ../IMG_conv_9x9_i8_c8s_cn.h
-deep_learning.obj: ../DSPF_sp_dotprod.h
-deep_learning.obj: ../inc/kernel.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSP_maxval.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_9x9_i8_c8s_cn.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSPF_sp_dotprod.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel.h
 deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/stdlib.h
-deep_learning.obj: ../inc/kernel_3x3.h
-deep_learning.obj: ../inc/kernel_5x5.h
-deep_learning.obj: ../inc/kernel_7x7.h
-deep_learning.obj: ../inc/kernel_9x9.h
-deep_learning.obj: ../inc/weights.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel_3x3.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel_5x5.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel_7x7.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel_9x9.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/weights.h
 
-../deep_learning.c: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/deep_learning.c: 
 /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/stdio.h: 
 /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/linkage.h: 
 /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/stdarg.h: 
@@ -177,7 +182,7 @@ deep_learning.obj: ../inc/weights.h
 /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/mathf.h: 
 /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/float.h: 
 /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/mathl.h: 
-../user_config.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/user_config.h: 
 /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_tsc.h: 
 /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/soc.h: 
 /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/cslr.h: 
@@ -192,6 +197,11 @@ deep_learning.obj: ../inc/weights.h
 /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl.h: 
 /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_types.h: 
 /opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_error.h: 
+/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/c6x.h: 
+/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/vect.h: 
+/opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_cacheAux.h: 
+/opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/csl_cache.h: 
+/opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/cslr_cgem.h: 
 /opt/ti/imglib_c66x_3_1_1_0/inc/imglib.h: 
 /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_boundary_16s/IMG_boundary_16s.h: 
 /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_boundary_16s/c66/IMG_boundary_16s.h: 
@@ -319,13 +329,13 @@ deep_learning.obj: ../inc/weights.h
 /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_demux_le16_16/c66/IMG_yc_demux_le16_16.h: 
 /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_demux_le16_8/IMG_yc_demux_le16_8.h: 
 /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_demux_le16_8/c66/IMG_yc_demux_le16_8.h: 
-../DSP_maxval.h: 
-../IMG_conv_9x9_i8_c8s_cn.h: 
-../DSPF_sp_dotprod.h: 
-../inc/kernel.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSP_maxval.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_9x9_i8_c8s_cn.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSPF_sp_dotprod.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel.h: 
 /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/stdlib.h: 
-../inc/kernel_3x3.h: 
-../inc/kernel_5x5.h: 
-../inc/kernel_7x7.h: 
-../inc/kernel_9x9.h: 
-../inc/weights.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel_3x3.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel_5x5.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel_7x7.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel_9x9.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/weights.h: 

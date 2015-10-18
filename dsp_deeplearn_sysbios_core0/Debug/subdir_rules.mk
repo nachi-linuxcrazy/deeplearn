@@ -41,7 +41,7 @@ IMG_math.obj: ../IMG_math.c $(GEN_OPTS) $(GEN_SRCS)
 configPkg/compiler.opt: ../app.cfg
 	@echo 'Building file: $<'
 	@echo 'Invoking: XDCtools'
-	"/opt/ti/xdctools_3_24_06_63/xs" --xdcpath="/opt/ti/ccsv5/ccs_base;/opt/ti/bios_6_33_08_55/packages;/home/chipes/TI_DSP_Workspace/Memory_Package;" xdc.tools.configuro -o configPkg -t ti.targets.elf.C66 -p ti.platforms.evm6678 -r debug -c "/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3" --compileOptions "-g --optimize_with_debug" "$<"
+	"/opt/ti/xdctools_3_24_06_63/xs" --xdcpath="/opt/ti/ccsv5/ccs_base;/opt/ti/bios_6_33_08_55/packages;/home/chipes/TI_DSP_Workspace/Memory_Package;/home/chipes/myRepository/packages;" xdc.tools.configuro -o configPkg -t ti.targets.elf.C66 -p ti.platforms.evm6678 -r debug -c "/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3" --compileOptions "-g --optimize_with_debug" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

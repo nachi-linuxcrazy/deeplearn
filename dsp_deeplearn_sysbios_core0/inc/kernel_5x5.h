@@ -16,6 +16,7 @@
 #ifndef KERNEL_CONST_5_5_H
 #define KERNEL_CONST_5_5_H
 
+#pragma DATA_SECTION(kernel5x5, ".local_ram")
 const char kernel5x5[50][25] = {{0, 5, -22, -14, 40,\
  -9, -21, 10, 16, -37,\
  25, -1, 42, -63, -61,\

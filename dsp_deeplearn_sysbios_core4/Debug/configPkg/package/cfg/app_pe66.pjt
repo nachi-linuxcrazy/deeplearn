@@ -32,7 +32,7 @@ ExtMakefile=../../package.bld
 [Source Files]
 Source="../../package.bld"
 Source="app_xe66.c"
-Source="../..//home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core4/app.cfg"
+Source="../..//home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/app.cfg"
 
 ["../../package.bld" Settings: "Executable"]
 UseCustomBuild=true
@@ -66,5 +66,5 @@ Run=Always
 ["app_xe66.c" Settings: "Executable"]
 ExcludeFromBuild=true
 
-["../..//home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core4/app.cfg" Settings: "Executable"]
+["../..//home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/app.cfg" Settings: "Executable"]
 ExcludeFromBuild=true

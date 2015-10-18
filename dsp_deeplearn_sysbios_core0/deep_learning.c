@@ -26,10 +26,26 @@
 
 #include "inc/kernel.h"
 #include "inc/kernel_3x3.h"
-#include "inc/kernel_5x5.h" /*TODO*/
+#include "inc/kernel_5x5.h" /*TODO: generate kernels*/
 #include "inc/kernel_7x7.h"
 #include "inc/kernel_9x9.h"
 #include "inc/weights.h"
+
+
+typedef enum CRITICAL_SECTION
+{
+	L1_MAPS1,
+	L2_MAPS1,
+	L3_MAPS1,
+	MAX_CRITICAL_SECTION
+}CRITICAL_SECTION;
+
+typedef struct SharedMem
+{
+	uint16_t		nSize;
+	uint16_t		nElements;
+	void*			nSegment;
+}SharedMem;
 
 unsigned int core_id;
 
@@ -49,6 +65,8 @@ unsigned char 	L2Data2[WIDTH/4][HEIGHT/4] ={{{0}}};
 #pragma DATA_ALIGN(dilate,8)
 signed char dilate[9] = {0};
 
+#ifdef _CORE0
+
 #pragma DATA_SECTION(L1Data1, ".critical_section")
 #pragma DATA_ALIGN(L1Data1,4)
 char 	L1Data1[L1_MAPS][WIDTH/2][HEIGHT/2] ={{{0}}};
@@ -61,6 +79,49 @@ char 	L2Data1[L2_MAPS][WIDTH/4][HEIGHT/4] ={{{0}}};
 #pragma DATA_ALIGN(L3Data1,4)
 char 	L3Data1[L3_MAPS][WIDTH/8][HEIGHT/8]={{{0}}};
 
+#pragma DATA_SECTION(gCriticalMemRef, ".critical_section_reference")
+SharedMem	gCriticalMemRef[MAX_CRITICAL_SECTION] =
+{
+
+	WIDTH/2*HEIGHT/2, 1,(void*)&L1Data1[0][0][0],
+
+	WIDTH/4*HEIGHT/4, 1,(void*)&L2Data1[0][0][0],
+
+	WIDTH/8*HEIGHT/8, 1,(void*)&L3Data1[0][0][0]
+};
+
+#pragma DATA_SECTION(data, ".critical_section")
+#pragma DATA_ALIGN(data,8)
+float data[CLASSIFIER_INDEX];
+
+#pragma DATA_SECTION(data1, ".critical_section")
+#pragma DATA_ALIGN(data1,8)
+float data1[CLASSIFIER_INDEX];
+
+#pragma DATA_SECTION(data2, ".critical_section")
+#pragma DATA_ALIGN(data2,8)
+float data2[CLASSIFIER_INDEX];
+
+#pragma DATA_SECTION(data3, ".critical_section")
+#pragma DATA_ALIGN(data3,8)
+float data3[CLASSIFIER_INDEX];
+
+static float *fData  = &data[0];
+static float *fData1 = &data1[0];
+static float *fData2 = &data2[0];
+static float *fData3 = &data3[0];
+
+volatile SharedMem *gCriticalMemRefPtr = (volatile SharedMem *)&gCriticalMemRef;
+
+#else /* _CORE0 */
+
+volatile SharedMem *gCriticalMemRefPtr = (SharedMem *)CX_CRITICAL_SECTION_REFERENCE;
+
+#endif
+
+volatile char   ***gL1Data1	= NULL;
+volatile char	***gL2Data1 = NULL;
+volatile char	***gL3Data1	= NULL;
 
 /*
 signed char* data1 = NULL;
@@ -135,6 +196,18 @@ uint8_t deinitializeData()
     return 0;
 }*/
 
+void MemMgr_InitCriticalMemory()
+{
+
+#ifdef _CORE0
+	memset((void*)gL1Data1, 0, gCriticalMemRefPtr[L1_MAPS1].nSize*gCriticalMemRefPtr[L1_MAPS1].nElements);
+	memset((void*)gL2Data1, 0, gCriticalMemRefPtr[L2_MAPS1].nSize*gCriticalMemRefPtr[L2_MAPS1].nElements);
+	memset((void*)gL3Data1, 0, gCriticalMemRefPtr[L3_MAPS1].nSize*gCriticalMemRefPtr[L3_MAPS1].nElements);
+#endif
+	gL1Data1 		= (volatile char***)(gCriticalMemRefPtr[L1_MAPS1].nSegment);
+	gL2Data1 		= (volatile char***)(gCriticalMemRefPtr[L2_MAPS1].nSegment);
+	gL3Data1 		= (volatile char***)(gCriticalMemRefPtr[L3_MAPS1].nSegment);
+}
 int find_maximum(signed char a[], int n)
 {
     int c, max, index;
@@ -164,7 +237,7 @@ static void Dilate3x3(unsigned char *image, unsigned char *dest_image, int M, in
     {
         for (col = 0; col < N; col++)
         {
-        	IMG_conv_3x3_i8_c8s(image,(unsigned char *)dilate,9,N,kernel,0);
+        	IMG_conv_3x3_i8_c8s((image + N*row + col),(unsigned char *)dilate,9,N,kernel,0);
             location = find_maximum(dilate, 9); 		/*TODO: DSP_maxval/DSPF_sp_maxval*/
             *(dest_image + N*row + col) = dilate[location];
         }
@@ -200,20 +273,30 @@ uint32_t operateLayer1(uint8_t** src, uint32_t w, uint32_t h)
 {
     uint8_t i;
     uint32_t j;
-    char * ImageDataPtr = (char*)&ImageData1[0][0];
+    char * ImageDataPtr = (char*)&ImageData1[0][0];  //TODO: num larger 128 ??
     const unsigned char *src_ptr = *src;
     short pixels = w*h;
     short shift = 0;
+    uint8_t num_maps;
 
-    for (i = 0; i<(L1_MAPS/NUM_CORES); i++)
+	if(DNUM < (L1_MAPS%NUM_CORES))
+		num_maps = (L1_MAPS/NUM_CORES)+1;
+	else
+		num_maps = L1_MAPS/NUM_CORES;
+
+    for (i = 0; i<num_maps; i++)
     {
-    	IMG_conv_9x9_i8_c8s_cn (src_ptr, (unsigned char*)ImageDataPtr, pixels, h,(const char*) &kernel9x9[i][0],shift); /*TODO* 9x9, Move kernels to L2SRAM,... */ // all cores read image from cs here
+    	IMG_conv_9x9_i8_c8s_cn (src_ptr, (unsigned char*)ImageDataPtr, pixels, h,(const char*) &kernel9x9[i][0],shift); /*9x9, all cores read image from cs here*/
         for (j=0; j<w*h; j++)
         {
         	ImageDataPtr[j] = ((ImageDataPtr[j] < 0) ? 0 : ImageDataPtr[j]);
         }
         Dilate3x3((unsigned char*)ImageDataPtr,(unsigned char*) ImageDataPtr, w, h);     // currently using same input as ouput, thinking it should not affect the results, saving data space
-        SubSampleBy2Fun((uint8_t*)ImageDataPtr, (uint8_t*)&L1Data1[(core_id*L1_MAPS/NUM_CORES)+i][0][0], w/2, h/2); // all cores will write to critical section here, but before read we need to sync.
+
+        if(num_maps<(L1_MAPS/NUM_CORES))
+        	SubSampleBy2Fun((uint8_t*)ImageDataPtr, (uint8_t*)gL1Data1[core_id*(L1_MAPS/NUM_CORES)+i][0][0], w/2, h/2);  // all cores will write to critical section here, but before read we need to sync.
+        else
+        	SubSampleBy2Fun((uint8_t*)ImageDataPtr, (uint8_t*)gL1Data1[NUM_CORES*(L1_MAPS/NUM_CORES)+core_id][0][0], w/2, h/2);
     }
     return 0;
 }
@@ -228,15 +311,21 @@ uint32_t operateLayer2(uint32_t w, uint32_t h)
     signed char* ptr2 = NULL;
     short pixels = w*h;
     short shift = 0;
+    uint8_t num_maps;
 
-    for (i = 0; i<(L2_MAPS/NUM_CORES); i++)
+	if(DNUM < (L2_MAPS%NUM_CORES))
+		num_maps = (L2_MAPS/NUM_CORES)+1;
+	else
+		num_maps = L2_MAPS/NUM_CORES;
+
+    for (i = 0; i<num_maps; i++)
     {
     	selection = rand() % L1_MAPS;
-        ptr1 = (signed char*)&L1Data1[selection][0][0];
-        for(k=0;k<1;k++)
+        ptr1 = (signed char*)&gL1Data1[selection][0][0];
+        for(k=0;k<1;k++)											//TODO: find the correct value
         {
         	selection = rand() % L1_MAPS;
-        	ptr2 = (signed char *)&L1Data1[selection][0][0];
+        	ptr2 = (signed char *)&gL1Data1[selection][0][0];
         	s_img_add_weighted((uint8_t*)ptr1,(uint8_t*)ptr2,w,h,1); //TODO:logically correct ?? optimize??
         }
         IMG_conv_7x7_i8_c8s ((unsigned char*)ptr2,(unsigned char*)ImageDataPtr, pixels, h, &kernel7x7[i][0],shift);
@@ -245,7 +334,11 @@ uint32_t operateLayer2(uint32_t w, uint32_t h)
         	ImageDataPtr[j] = ((ImageDataPtr[j] < 0) ? 0 : ImageDataPtr[j]);
         }
         Dilate3x3((unsigned char*)ImageDataPtr, (unsigned char*)ImageDataPtr, w, h);
-        SubSampleBy2Fun((uint8_t*)ImageDataPtr, (uint8_t*)&L2Data1[core_id*(L2_MAPS/NUM_CORES)+i][0][0], w/2, h/2);
+
+        if(num_maps<(L2_MAPS/NUM_CORES))
+        	SubSampleBy2Fun((uint8_t*)ImageDataPtr, (uint8_t*)gL2Data1[core_id*(L2_MAPS/NUM_CORES)+i][0][0], w/2, h/2);
+        else
+        	SubSampleBy2Fun((uint8_t*)ImageDataPtr, (uint8_t*)gL2Data1[NUM_CORES*(L2_MAPS/NUM_CORES)+core_id][0][0], w/2, h/2);
     }
 
     return 0;
@@ -261,15 +354,21 @@ uint32_t operateLayer3(uint32_t w, uint32_t h)
     signed char* ptr2 = NULL;
     short pixels = w*h;
     short shift = 0;
+    uint8_t num_maps;
 
-    for (i = 0; i<L3_MAPS/NUM_CORES; ++i)
+	if(DNUM < (L3_MAPS%NUM_CORES))
+		num_maps = (L3_MAPS/NUM_CORES)+1;
+	else
+		num_maps = L3_MAPS/NUM_CORES;
+
+    for (i = 0; i<num_maps; ++i)
     {
     	selection = rand() % L2_MAPS;
-        ptr1 = (signed char*)&L2Data1[selection][0][0];
-        for(k=0;k<1;k++) /*TODO*/
+        ptr1 = (signed char*)&gL2Data1[selection][0][0];
+        for(k=0;k<1;k++)
         {
         	selection = rand() % L2_MAPS;
-        	ptr2 = (signed char*)&L2Data1[selection][0][0];
+        	ptr2 = (signed char*)&gL2Data1[selection][0][0];
         	s_img_add_weighted((uint8_t*)ptr1,(uint8_t*)ptr2,w,h,1);
         }
         IMG_conv_5x5_i8_c8s((unsigned char*)ptr2,(unsigned char*)ImagePtr, pixels, h, &kernel5x5[i][0],shift);
@@ -278,7 +377,11 @@ uint32_t operateLayer3(uint32_t w, uint32_t h)
         	ImagePtr[j] = ((ImagePtr[j] < 0) ? 0 : ImagePtr[j]);
         }
         Dilate3x3((unsigned char*)ImagePtr, (unsigned char*)ImagePtr, w, h);
-        SubSampleBy2Fun((uint8_t*)ImagePtr, (uint8_t*)&L3Data1[core_id*(L3_MAPS/NUM_CORES)+i][0][0], w/2, h/2);
+
+        if(num_maps<(L2_MAPS/NUM_CORES))
+        	SubSampleBy2Fun((uint8_t*)ImagePtr, (uint8_t*)gL3Data1[core_id*(L3_MAPS/NUM_CORES)+i][0][0], w/2, h/2);
+        else
+        	SubSampleBy2Fun((uint8_t*)ImagePtr, (uint8_t*)gL3Data1[NUM_CORES*(L3_MAPS/NUM_CORES)+core_id][0][0], w/2, h/2);
 
     }
 
@@ -306,10 +409,10 @@ uint8_t MaxValue(uint8_t *image1, int M, int N)
     return max;
 }
 
-
+#ifdef _CORE0
 uint8_t classifier(uint8_t** src_initial, int w, int h)
 {
-/*    uint8_t  maxVal;
+    uint8_t  maxVal;
     uint32_t index;
     uint8_t* src = *src_initial;
     float   sum;
@@ -342,10 +445,9 @@ uint8_t classifier(uint8_t** src_initial, int w, int h)
         sum = DSPF_sp_dotprod(fData1,fKernel,104);
         fData3[index] = (float)tanh(sum);
     }
-*/
     return 0;
 }
-
+#endif
 
 uint8_t deeplearn(uint8_t* data, uint32_t w, uint32_t h)
 {
@@ -358,37 +460,26 @@ uint8_t deeplearn(uint8_t* data, uint32_t w, uint32_t h)
     endVal = CSL_tscRead();
     printf ("L1 %lf \n", (double)(endVal-startVal)/DSP_FREQ_IN_MHZ);
 
-    CACHE_wbAllL1d (CACHE_NOWAIT);
-
-    CORE_L1_SYNC= 1 << core_id;
-    //while(CORE_L1_SYNC != 0xFF);
+    _mfence();
 
     startVal = CSL_tscRead();
     operateLayer2(w / 2, h / 2);
     endVal = CSL_tscRead();
     printf ("L2 %lf \n", (double)(endVal-startVal)/DSP_FREQ_IN_MHZ);
 
-    CACHE_wbAllL1d (CACHE_NOWAIT);
-
-    CORE_L2_SYNC = 1 << core_id;
-    //while(CORE_L2_SYNC != 0xFF);
+    _mfence();
 
     startVal = CSL_tscRead();
     operateLayer3(w / 4, h / 4);
     endVal = CSL_tscRead();
     printf ("L3 %lf \n", (double)(endVal-startVal)/DSP_FREQ_IN_MHZ);
 
-    CACHE_wbAllL1d (CACHE_NOWAIT);
-
-    CORE_L3_SYNC = 1 << core_id;
-    //while(CORE_L3_SYNC != 0xFF);
-
-
+#ifdef _CORE0
     startVal = CSL_tscRead();
     classifier(&data, w / 8, h / 8);
     endVal = CSL_tscRead();
     printf ("classifier %lf \n", (double)(endVal-startVal)/DSP_FREQ_IN_MHZ);
-
+#endif
     return 0;
 
 }

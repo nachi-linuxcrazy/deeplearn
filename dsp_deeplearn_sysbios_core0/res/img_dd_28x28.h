@@ -1,7 +1,7 @@
 #define Width 	28
 #define Height 	28
 
-#pragma DATA_SECTION(in_img,".critical_section")
+#pragma DATA_SECTION(in_img,".local_ram")
 #pragma DATA_ALIGN(in_img,8)
 
 unsigned char in_img[Width*Height] = { 

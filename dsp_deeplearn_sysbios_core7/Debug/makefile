@@ -8,13 +8,11 @@ ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
 "./main.obj" \
 "./deep_learning.obj" \
-"./MemMgr.obj" \
 "./IMG_math.obj" \
 "./IMG_conv_9x9_i8_c8s_cn.obj" \
 "./DSP_maxval.obj" \
 "./DSPF_sp_maxval.obj" \
 "./DSPF_sp_dotprod.obj" \
-"./CriticalMem.obj" \
 -l"libc.a" \
 -l/opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl/lib/ti.csl.ae66 \
 -l/opt/ti/imglib_c66x_3_1_1_0/lib/imglib.ae66 \
@@ -130,8 +128,8 @@ dsp_deeplearn_sysbios_core7.out: $(OBJS) $(GEN_CMDS)
 clean:
 	-$(RM) $(GEN_SRCS__QUOTED)$(GEN_MISC_FILES__QUOTED)$(C6000_EXECUTABLE_OUTPUTS__QUOTED)$(GEN_OPTS__QUOTED)$(GEN_CMDS__QUOTED) "dsp_deeplearn_sysbios_core7.out"
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
-	-$(RM) "CriticalMem.pp" "DSPF_sp_dotprod.pp" "DSPF_sp_maxval.pp" "DSP_maxval.pp" "IMG_conv_9x9_i8_c8s_cn.pp" "IMG_math.pp" "MemMgr.pp" "deep_learning.pp" "main.pp" 
-	-$(RM) "CriticalMem.obj" "DSPF_sp_dotprod.obj" "DSPF_sp_maxval.obj" "DSP_maxval.obj" "IMG_conv_9x9_i8_c8s_cn.obj" "IMG_math.obj" "MemMgr.obj" "deep_learning.obj" "main.obj" 
+	-$(RM) "DSPF_sp_dotprod.pp" "DSPF_sp_maxval.pp" "DSP_maxval.pp" "IMG_conv_9x9_i8_c8s_cn.pp" "IMG_math.pp" "deep_learning.pp" "main.pp" 
+	-$(RM) "DSPF_sp_dotprod.obj" "DSPF_sp_maxval.obj" "DSP_maxval.obj" "IMG_conv_9x9_i8_c8s_cn.obj" "IMG_math.obj" "deep_learning.obj" "main.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

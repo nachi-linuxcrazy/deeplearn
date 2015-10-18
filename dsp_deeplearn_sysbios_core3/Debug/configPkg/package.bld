@@ -11,7 +11,7 @@ var makeAssembly = false;
 var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
-        cfgScript: '/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core3/app.cfg',
+        cfgScript: '/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/app.cfg',
         profile: 'release',
         cfgHome: 'configPkg',
 });
@@ -40,7 +40,7 @@ else {
 }
 
 var thisObj = {
-    cfg:        '../app.cfg',
+    cfg:        '/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/app.cfg',
     outputPath: '/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core3/Debug/configPkg',
     exeName:    'app' + suffix,
     exeIntName: 'app' + suffix.replace('.', '_'),

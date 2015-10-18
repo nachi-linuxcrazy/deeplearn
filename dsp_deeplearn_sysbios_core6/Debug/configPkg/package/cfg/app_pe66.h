@@ -7,19 +7,11 @@
 
 #include <xdc/std.h>
 
-extern int xdc_runtime_Startup__EXECFXN__C;
-
 extern int xdc_runtime_Startup__RESETFXN__C;
 
-#ifndef ti_sysbios_knl_Task__include
-#ifndef __nested__
-#define __nested__
-#include <ti/sysbios/knl/Task.h>
-#undef __nested__
-#else
-#include <ti/sysbios/knl/Task.h>
-#endif
-#endif
+extern int xdc_runtime_Startup_reset__I;
 
-extern ti_sysbios_knl_Task_Struct TSK_idle;
+extern int xdc_runtime_Startup__EXECFXN__C;
+
+extern int xdc_runtime_Startup_exec__E;
 

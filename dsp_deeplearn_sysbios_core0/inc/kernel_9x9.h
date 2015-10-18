@@ -16,6 +16,7 @@
 #ifndef KERNEL_9_9_H
 #define KERNEL_9_9_H
 
+#pragma DATA_SECTION(kernel9x9, ".local_ram")
 const signed char kernel9x9[50][81]  = {{0, 5, -22, -14, 40, -9, -21, 10, 16,\
  -37, 25, -1, 42, -63, -61, -17, -24, 61,\
  9, -44, 49, -25, -79, -50, -44, -2, 43,\

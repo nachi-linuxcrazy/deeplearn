@@ -10,15 +10,14 @@
 
 
 -l"/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core7/Debug/configPkg/package/cfg/app_pe66.oe66"
--l"/opt/ti/bios_6_33_08_55/packages/ti/sysbios/lib/instrumented_e66/sysbios/sysbios.lib"
 -l"/opt/ti/xdctools_3_24_06_63/packages/ti/targets/rts6000/lib/ti.targets.rts6000.ae66"
 -l"/opt/ti/xdctools_3_24_06_63/packages/ti/targets/rts6000/lib/boot.ae66"
 
 --retain="*(xdc.meta)"
 
 
---args 0x0
--heap  0x0
+--args 0x200
+-heap  0x1000
 -stack 0x2000
 
 MEMORY
@@ -60,38 +59,6 @@ MEMORY
 
 /* Content from ti.targets.rts6000 (null): */
 
-/* Content from ti.sysbios.interfaces (null): */
-
-/* Content from ti.sysbios.family (null): */
-
-/* Content from ti.sysbios (null): */
-
-/* Content from xdc.services.getset (null): */
-
-/* Content from ti.sysbios.hal (null): */
-
-/* Content from ti.sysbios.knl (null): */
-
-/* Content from xdc.runtime.knl (null): */
-
-/* Content from ti.sysbios.gates (null): */
-
-/* Content from ti.sysbios.xdcruntime (null): */
-
-/* Content from ti.sysbios.family.c66 (null): */
-
-/* Content from ti.sysbios.family.c64p (null): */
-
-/* Content from ti.sysbios.family.c62 (null): */
-
-/* Content from ti.sysbios.heaps (null): */
-
-/* Content from ti.sysbios.timers.timer64 (null): */
-
-/* Content from ti.sysbios.family.c64p.tci6488 (null): */
-
-/* Content from ti.sysbios.utils (null): */
-
 /* Content from ti.catalog.c6000 (null): */
 
 /* Content from ti.catalog (null): */
@@ -110,9 +77,10 @@ MEMORY
 /*
  * symbolic aliases for static instance objects
  */
-xdc_runtime_Startup__EXECFXN__C = 1;
-xdc_runtime_Startup__RESETFXN__C = 1;
-TSK_idle = ti_sysbios_knl_Task_Object__table__V + 0;
+xdc_runtime_Startup__RESETFXN__C = 0;
+xdc_runtime_Startup_reset__I = 0;
+xdc_runtime_Startup__EXECFXN__C = 0;
+xdc_runtime_Startup_exec__E = 0;
 
 SECTIONS
 {
@@ -134,10 +102,12 @@ SECTIONS
     .switch: load >> L2SRAM
     .sysmem: load > L2SRAM
     .far: load >> L2SRAM
-    .args: load > L2SRAM align = 0x4, fill = 0 {_argsize = 0x0; }
+    .args: load > L2SRAM align = 0x4, fill = 0 {_argsize = 0x200; }
     .cio: load >> L2SRAM
     .ti.handler_table: load > L2SRAM
-    .vecs: load > L2SRAM
+    .critical_section: load >> MSMCSRAM
+    .critical_section_reference: load >> MSMCSRAM
+    .local_ram: load >> L2SRAM
     xdc.meta: load >> L2SRAM, type = COPY
 
 }
