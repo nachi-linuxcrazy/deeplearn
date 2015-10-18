@@ -1005,7 +1005,7 @@
             <feature name="execCmd" type="string" value="@%24%28ECHO%29%20ti.platforms.evm6678%20platform%20package%20cannot%20execute%20app.xe66%20on%20Linux%0A@%24%28ECHO%29%20Check%20for%20updates%20to%20this%20package%20at%3A%0A@%24%28ECHO%29%20https%3A//www-a.ti.com/downloads/sds_support/targetcontent/rtsc/index.html%0A%09%3A"/>
             <feature name="linkTemplate" type="object" value="null"/>
             <feature name="main" type="undefined" value="undefined"/>
-            <feature name="sectMap" type="object"><map id='xdc.cfg.Program/sectMap'  length='3'><entry key='.critical_section'>MSMCSRAM</entry><entry key='.critical_section_reference'>MSMCSRAM</entry><entry key='.local_ram'>L2SRAM</entry></map>
+            <feature name="sectMap" type="object"><map id='xdc.cfg.Program/sectMap'  length='3'><entry key='.critical_section'>MSMCSRAM</entry><entry key='.critical_section_reference'>DDR3</entry><entry key='.local_ram'>L2SRAM</entry></map>
             </feature>
             <feature name="sectionsExclude" type="object" value="null"/>
             <feature name="sectionsTemplate" type="object" value="null"/>
@@ -1022,7 +1022,7 @@
   <field name="boardName">evm6678</field>
   <field name="boardFamily">evm6678</field>
   <field name="boardRevision">null</field>
-</struct></field><field name='attrs'>xdc.services.intern.xsr.Value$Obj@5f2db0::(xdc.platform.ICpuDataSheet.Instance)ti.catalog.c6000.TMS320C6678.Instance#0</field><field name='memoryMap'><map id="xdc.platform.ExeContext.Instance#0/memoryMap" length="3">
+</struct></field><field name='attrs'>xdc.services.intern.xsr.Value$Obj@b0a3f5::(xdc.platform.ICpuDataSheet.Instance)ti.catalog.c6000.TMS320C6678.Instance#0</field><field name='memoryMap'><map id="xdc.platform.ExeContext.Instance#0/memoryMap" length="3">
   <entry key="L2SRAM">
     <struct id="xdc.platform.ExeContext.Instance#0/memoryMap/&quot;L2SRAM&quot;">
       <field name="comment">512KB L2 SRAM/CACHE</field>

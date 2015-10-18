@@ -106,7 +106,7 @@ SECTIONS
     .cio: load >> L2SRAM
     .ti.handler_table: load > L2SRAM
     .critical_section: load >> MSMCSRAM
-    .critical_section_reference: load >> MSMCSRAM
+    .critical_section_reference: load >> DDR3
     .local_ram: load >> L2SRAM
     xdc.meta: load >> L2SRAM, type = COPY
 

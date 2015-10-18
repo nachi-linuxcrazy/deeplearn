@@ -161,6 +161,9 @@ deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_dem
 deep_learning.obj: /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_demux_le16_8/c66/IMG_yc_demux_le16_8.h
 deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSP_maxval.h
 deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_9x9_i8_c8s_cn.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_3x3_i8_c8s_cn.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_5x5_i8_c8s_cn.h
+deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_7x7_i8_c8s_cn.h
 deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSPF_sp_dotprod.h
 deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel.h
 deep_learning.obj: /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/stdlib.h
@@ -331,6 +334,9 @@ deep_learning.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc
 /opt/ti/imglib_c66x_3_1_1_0/packages/ti/imglib/src/IMG_yc_demux_le16_8/c66/IMG_yc_demux_le16_8.h: 
 /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSP_maxval.h: 
 /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_9x9_i8_c8s_cn.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_3x3_i8_c8s_cn.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_5x5_i8_c8s_cn.h: 
+/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_7x7_i8_c8s_cn.h: 
 /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSPF_sp_dotprod.h: 
 /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/inc/kernel.h: 
 /opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include/stdlib.h: 

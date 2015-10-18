@@ -18,7 +18,7 @@
 
 --args 0x200
 -heap  0x1000
--stack 0x200
+-stack 0x2000
 
 MEMORY
 {

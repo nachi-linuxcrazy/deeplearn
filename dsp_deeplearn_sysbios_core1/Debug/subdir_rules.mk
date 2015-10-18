@@ -24,6 +24,27 @@ DSP_maxval.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/DSP_ma
 	@echo 'Finished building: $<'
 	@echo ' '
 
+IMG_conv_3x3_i8_c8s_cn.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_3x3_i8_c8s_cn.c $(GEN_OPTS) $(GEN_SRCS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C6000 Compiler'
+	"/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/bin/cl6x" -mv6600 --abi=eabi -O3 --opt_for_speed=5 --include_path="/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include" --include_path="/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core1" --include_path="/opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="/opt/ti/imglib_c66x_3_1_1_0/packages" --include_path="/opt/ti/pdk_C6678_1_1_2_6/packages" --include_path="/opt/ti/imglib_c66x_3_1_1_0/inc" -g --define=_CORE1 --display_error_number --diag_warning=225 --preproc_with_compile --preproc_dependency="IMG_conv_3x3_i8_c8s_cn.pp" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+IMG_conv_5x5_i8_c8s_cn.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_5x5_i8_c8s_cn.c $(GEN_OPTS) $(GEN_SRCS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C6000 Compiler'
+	"/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/bin/cl6x" -mv6600 --abi=eabi -O3 --opt_for_speed=5 --include_path="/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include" --include_path="/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core1" --include_path="/opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="/opt/ti/imglib_c66x_3_1_1_0/packages" --include_path="/opt/ti/pdk_C6678_1_1_2_6/packages" --include_path="/opt/ti/imglib_c66x_3_1_1_0/inc" -g --define=_CORE1 --display_error_number --diag_warning=225 --preproc_with_compile --preproc_dependency="IMG_conv_5x5_i8_c8s_cn.pp" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+IMG_conv_7x7_i8_c8s_cn.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_7x7_i8_c8s_cn.c $(GEN_OPTS) $(GEN_SRCS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C6000 Compiler'
+	"/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/bin/cl6x" -mv6600 --abi=eabi -O3 --opt_for_speed=5 --include_path="/opt/ti/ccsv5/tools/compiler/ti-cgt-c6000_8.0.3/include" --include_path="/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core1" --include_path="/opt/ti/pdk_C6678_1_1_2_6/packages/ti/csl" --include_path="/opt/ti/imglib_c66x_3_1_1_0/packages" --include_path="/opt/ti/pdk_C6678_1_1_2_6/packages" --include_path="/opt/ti/imglib_c66x_3_1_1_0/inc" -g --define=_CORE1 --display_error_number --diag_warning=225 --preproc_with_compile --preproc_dependency="IMG_conv_7x7_i8_c8s_cn.pp" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
 IMG_conv_9x9_i8_c8s_cn.obj: /home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/IMG_conv_9x9_i8_c8s_cn.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'

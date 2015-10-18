@@ -10,6 +10,9 @@ $(GEN_CMDS__FLAG) \
 "./deep_learning.obj" \
 "./IMG_math.obj" \
 "./IMG_conv_9x9_i8_c8s_cn.obj" \
+"./IMG_conv_7x7_i8_c8s_cn.obj" \
+"./IMG_conv_5x5_i8_c8s_cn.obj" \
+"./IMG_conv_3x3_i8_c8s_cn.obj" \
 "./DSP_maxval.obj" \
 "./DSPF_sp_maxval.obj" \
 "./DSPF_sp_dotprod.obj" \
@@ -128,8 +131,8 @@ dsp_deeplearn_sysbios_core6.out: $(OBJS) $(GEN_CMDS)
 clean:
 	-$(RM) $(GEN_SRCS__QUOTED)$(GEN_MISC_FILES__QUOTED)$(C6000_EXECUTABLE_OUTPUTS__QUOTED)$(GEN_OPTS__QUOTED)$(GEN_CMDS__QUOTED) "dsp_deeplearn_sysbios_core6.out"
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
-	-$(RM) "DSPF_sp_dotprod.pp" "DSPF_sp_maxval.pp" "DSP_maxval.pp" "IMG_conv_9x9_i8_c8s_cn.pp" "IMG_math.pp" "deep_learning.pp" "main.pp" 
-	-$(RM) "DSPF_sp_dotprod.obj" "DSPF_sp_maxval.obj" "DSP_maxval.obj" "IMG_conv_9x9_i8_c8s_cn.obj" "IMG_math.obj" "deep_learning.obj" "main.obj" 
+	-$(RM) "DSPF_sp_dotprod.pp" "DSPF_sp_maxval.pp" "DSP_maxval.pp" "IMG_conv_3x3_i8_c8s_cn.pp" "IMG_conv_5x5_i8_c8s_cn.pp" "IMG_conv_7x7_i8_c8s_cn.pp" "IMG_conv_9x9_i8_c8s_cn.pp" "IMG_math.pp" "deep_learning.pp" "main.pp" 
+	-$(RM) "DSPF_sp_dotprod.obj" "DSPF_sp_maxval.obj" "DSP_maxval.obj" "IMG_conv_3x3_i8_c8s_cn.obj" "IMG_conv_5x5_i8_c8s_cn.obj" "IMG_conv_7x7_i8_c8s_cn.obj" "IMG_conv_9x9_i8_c8s_cn.obj" "IMG_math.obj" "deep_learning.obj" "main.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

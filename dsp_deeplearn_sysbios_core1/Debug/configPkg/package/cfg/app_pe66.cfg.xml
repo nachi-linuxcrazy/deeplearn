@@ -4,7 +4,7 @@
     platformName="ti.platforms.evm6678"
     globalSection="null"
     sysStack="4096"
-    stack="512"
+    stack="8192"
     heap="4096"
     argSize="512"
     execCmd="@%24%28ECHO%29%20ti.platforms.evm6678%20platform%20package%20cannot%20execute%20app.xe66%20on%20Linux%0A@%24%28ECHO%29%20Check%20for%20updates%20to%20this%20package%20at%3A%0A@%24%28ECHO%29%20https%3A//www-a.ti.com/downloads/sds_support/targetcontent/rtsc/index.html%0A%09%3A"
@@ -999,7 +999,7 @@
             </feature>
             <feature name="globalSection" type="object" value="null"/>
             <feature name="sysStack" type="number" value="4096"/>
-            <feature name="stack" type="number" value="512"/>
+            <feature name="stack" type="number" value="8192"/>
             <feature name="heap" type="number" value="4096"/>
             <feature name="argSize" type="number" value="512"/>
             <feature name="execCmd" type="string" value="@%24%28ECHO%29%20ti.platforms.evm6678%20platform%20package%20cannot%20execute%20app.xe66%20on%20Linux%0A@%24%28ECHO%29%20Check%20for%20updates%20to%20this%20package%20at%3A%0A@%24%28ECHO%29%20https%3A//www-a.ti.com/downloads/sds_support/targetcontent/rtsc/index.html%0A%09%3A"/>

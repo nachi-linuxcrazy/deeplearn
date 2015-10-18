@@ -20,7 +20,7 @@ ExcludeFromBuild=true
 ;  directories.
 ;
 ["Compiler" Settings: "Executable"]
-Options=-i"/opt/ti/ccsv5/ccs_base" -i"/opt/ti/bios_6_33_08_55/packages" -i"/home/chipes/TI_DSP_Workspace/Memory_Package" -i"/home/chipes/myRepository/packages" -i"/opt/ti/xdctools_3_24_06_63/packages" -i"/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/Debug" 
+Options=-i"/opt/ti/ccsv5/ccs_base" -i"/opt/ti/xdctools_3_24_06_63/packages" -i"/home/chipes/TI_DSP_Workspace/dsp_deeplearn_sysbios_core0/Debug" 
 
 [External Makefile]
 ExtMakefile=../../package.bld

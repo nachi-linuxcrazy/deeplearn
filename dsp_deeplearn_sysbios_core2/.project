@@ -113,6 +113,36 @@
 			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/DSP_maxval.h</locationURI>
 		</link>
 		<link>
+			<name>IMG_conv_3x3_i8_c8s_cn.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/IMG_conv_3x3_i8_c8s_cn.c</locationURI>
+		</link>
+		<link>
+			<name>IMG_conv_3x3_i8_c8s_cn.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/IMG_conv_3x3_i8_c8s_cn.h</locationURI>
+		</link>
+		<link>
+			<name>IMG_conv_5x5_i8_c8s_cn.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/IMG_conv_5x5_i8_c8s_cn.c</locationURI>
+		</link>
+		<link>
+			<name>IMG_conv_5x5_i8_c8s_cn.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/IMG_conv_5x5_i8_c8s_cn.h</locationURI>
+		</link>
+		<link>
+			<name>IMG_conv_7x7_i8_c8s_cn.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/IMG_conv_7x7_i8_c8s_cn.c</locationURI>
+		</link>
+		<link>
+			<name>IMG_conv_7x7_i8_c8s_cn.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/IMG_conv_7x7_i8_c8s_cn.h</locationURI>
+		</link>
+		<link>
 			<name>IMG_conv_9x9_i8_c8s_cn.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/IMG_conv_9x9_i8_c8s_cn.c</locationURI>
@@ -131,11 +161,6 @@
 			<name>TMS320C6678.ccxml</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/TMS320C6678.ccxml</locationURI>
-		</link>
-		<link>
-			<name>app.cfg</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/dsp_deeplearn_sysbios_core0/app.cfg</locationURI>
 		</link>
 		<link>
 			<name>deep_learning.c</name>

@@ -17,9 +17,14 @@
 
 #define NUM_CORES 8
 
-#define L1_MAPS 16
-#define L2_MAPS 64
-#define L3_MAPS 128
+//#define L1_MAPS 16
+//#define L2_MAPS 64
+//#define L3_MAPS 128
+
+/* Teradeep */
+#define L1_MAPS 50
+#define L2_MAPS 128
+
 
 #define CLASSIFIER_INDEX 104
 

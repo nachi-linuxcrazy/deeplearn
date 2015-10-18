@@ -10,6 +10,9 @@ C_SRCS += \
 ../DSPF_sp_dotprod.c \
 ../DSPF_sp_maxval.c \
 ../DSP_maxval.c \
+../IMG_conv_3x3_i8_c8s_cn.c \
+../IMG_conv_5x5_i8_c8s_cn.c \
+../IMG_conv_7x7_i8_c8s_cn.c \
 ../IMG_conv_9x9_i8_c8s_cn.c \
 ../IMG_math.c \
 ../deep_learning.c \
@@ -19,6 +22,9 @@ OBJS += \
 ./DSPF_sp_dotprod.obj \
 ./DSPF_sp_maxval.obj \
 ./DSP_maxval.obj \
+./IMG_conv_3x3_i8_c8s_cn.obj \
+./IMG_conv_5x5_i8_c8s_cn.obj \
+./IMG_conv_7x7_i8_c8s_cn.obj \
 ./IMG_conv_9x9_i8_c8s_cn.obj \
 ./IMG_math.obj \
 ./deep_learning.obj \
@@ -32,6 +38,9 @@ C_DEPS += \
 ./DSPF_sp_dotprod.pp \
 ./DSPF_sp_maxval.pp \
 ./DSP_maxval.pp \
+./IMG_conv_3x3_i8_c8s_cn.pp \
+./IMG_conv_5x5_i8_c8s_cn.pp \
+./IMG_conv_7x7_i8_c8s_cn.pp \
 ./IMG_conv_9x9_i8_c8s_cn.pp \
 ./IMG_math.pp \
 ./deep_learning.pp \
@@ -57,6 +66,9 @@ C_DEPS__QUOTED += \
 "DSPF_sp_dotprod.pp" \
 "DSPF_sp_maxval.pp" \
 "DSP_maxval.pp" \
+"IMG_conv_3x3_i8_c8s_cn.pp" \
+"IMG_conv_5x5_i8_c8s_cn.pp" \
+"IMG_conv_7x7_i8_c8s_cn.pp" \
 "IMG_conv_9x9_i8_c8s_cn.pp" \
 "IMG_math.pp" \
 "deep_learning.pp" \
@@ -66,6 +78,9 @@ OBJS__QUOTED += \
 "DSPF_sp_dotprod.obj" \
 "DSPF_sp_maxval.obj" \
 "DSP_maxval.obj" \
+"IMG_conv_3x3_i8_c8s_cn.obj" \
+"IMG_conv_5x5_i8_c8s_cn.obj" \
+"IMG_conv_7x7_i8_c8s_cn.obj" \
 "IMG_conv_9x9_i8_c8s_cn.obj" \
 "IMG_math.obj" \
 "deep_learning.obj" \
@@ -75,6 +90,9 @@ C_SRCS__QUOTED += \
 "../DSPF_sp_dotprod.c" \
 "../DSPF_sp_maxval.c" \
 "../DSP_maxval.c" \
+"../IMG_conv_3x3_i8_c8s_cn.c" \
+"../IMG_conv_5x5_i8_c8s_cn.c" \
+"../IMG_conv_7x7_i8_c8s_cn.c" \
 "../IMG_conv_9x9_i8_c8s_cn.c" \
 "../IMG_math.c" \
 "../deep_learning.c" \

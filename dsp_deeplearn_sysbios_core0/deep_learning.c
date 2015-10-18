@@ -22,6 +22,9 @@
 #include "imglib.h"
 #include "DSP_maxval.h"
 #include "IMG_conv_9x9_i8_c8s_cn.h"
+#include "IMG_conv_3x3_i8_c8s_cn.h"
+#include "IMG_conv_5x5_i8_c8s_cn.h"
+#include "IMG_conv_7x7_i8_c8s_cn.h"
 #include "DSPF_sp_dotprod.h"
 
 #include "inc/kernel.h"
@@ -75,10 +78,6 @@ char 	L1Data1[L1_MAPS][WIDTH/2][HEIGHT/2] ={{{0}}};
 #pragma DATA_ALIGN(L2Data1,4)
 char 	L2Data1[L2_MAPS][WIDTH/4][HEIGHT/4] ={{{0}}};
 
-#pragma DATA_SECTION(L3Data1, ".critical_section")
-#pragma DATA_ALIGN(L3Data1,4)
-char 	L3Data1[L3_MAPS][WIDTH/8][HEIGHT/8]={{{0}}};
-
 #pragma DATA_SECTION(gCriticalMemRef, ".critical_section_reference")
 SharedMem	gCriticalMemRef[MAX_CRITICAL_SECTION] =
 {
@@ -87,8 +86,12 @@ SharedMem	gCriticalMemRef[MAX_CRITICAL_SECTION] =
 
 	WIDTH/4*HEIGHT/4, 1,(void*)&L2Data1[0][0][0],
 
-	WIDTH/8*HEIGHT/8, 1,(void*)&L3Data1[0][0][0]
+	//WIDTH/8*HEIGHT/8, 1,(void*)&L3Data1[0][0][0]
 };
+
+//#pragma DATA_SECTION(L3Data1, ".critical_section")
+//#pragma DATA_ALIGN(L3Data1,4)
+//char 	L3Data1[L3_MAPS][WIDTH/8][HEIGHT/8]={{{0}}};
 
 #pragma DATA_SECTION(data, ".critical_section")
 #pragma DATA_ALIGN(data,8)
@@ -237,7 +240,7 @@ static void Dilate3x3(unsigned char *image, unsigned char *dest_image, int M, in
     {
         for (col = 0; col < N; col++)
         {
-        	IMG_conv_3x3_i8_c8s((image + N*row + col),(unsigned char *)dilate,9,N,kernel,0);
+        	IMG_conv_3x3_i8_c8s_cn((image + N*row + col),(unsigned char *)dilate,9,N,kernel,0);
             location = find_maximum(dilate, 9); 		/*TODO: DSP_maxval/DSPF_sp_maxval*/
             *(dest_image + N*row + col) = dilate[location];
         }
@@ -286,7 +289,7 @@ uint32_t operateLayer1(uint8_t** src, uint32_t w, uint32_t h)
 
     for (i = 0; i<num_maps; i++)
     {
-    	IMG_conv_9x9_i8_c8s_cn (src_ptr, (unsigned char*)ImageDataPtr, pixels, h,(const char*) &kernel9x9[i][0],shift); /*9x9, all cores read image from cs here*/
+    	IMG_conv_7x7_i8_c8s (src_ptr, (unsigned char*)ImageDataPtr, pixels, h,(const char*) &kernel7x7[i][0],shift); /*9x9, all cores read image from cs here*/
         for (j=0; j<w*h; j++)
         {
         	ImageDataPtr[j] = ((ImageDataPtr[j] < 0) ? 0 : ImageDataPtr[j]);
@@ -328,7 +331,7 @@ uint32_t operateLayer2(uint32_t w, uint32_t h)
         	ptr2 = (signed char *)&gL1Data1[selection][0][0];
         	s_img_add_weighted((uint8_t*)ptr1,(uint8_t*)ptr2,w,h,1); //TODO:logically correct ?? optimize??
         }
-        IMG_conv_7x7_i8_c8s ((unsigned char*)ptr2,(unsigned char*)ImageDataPtr, pixels, h, &kernel7x7[i][0],shift);
+        IMG_conv_5x5_i8_c8s((unsigned char*)ptr2,(unsigned char*)ImageDataPtr, pixels, h, &kernel5x5[i][0],shift);
         for (j=0; j<w*h; j++)
         {
         	ImageDataPtr[j] = ((ImageDataPtr[j] < 0) ? 0 : ImageDataPtr[j]);
@@ -344,6 +347,7 @@ uint32_t operateLayer2(uint32_t w, uint32_t h)
     return 0;
 }
 
+#if 0
 uint32_t operateLayer3(uint32_t w, uint32_t h)
 {
     uint8_t i,k;
@@ -371,7 +375,7 @@ uint32_t operateLayer3(uint32_t w, uint32_t h)
         	ptr2 = (signed char*)&gL2Data1[selection][0][0];
         	s_img_add_weighted((uint8_t*)ptr1,(uint8_t*)ptr2,w,h,1);
         }
-        IMG_conv_5x5_i8_c8s((unsigned char*)ptr2,(unsigned char*)ImagePtr, pixels, h, &kernel5x5[i][0],shift);
+        IMG_conv_5x5_i8_c8s_cn((unsigned char*)ptr2,(unsigned char*)ImagePtr, pixels, h, &kernel5x5[i][0],shift);
         for (j=0; j<w*h; j++)
         {
         	ImagePtr[j] = ((ImagePtr[j] < 0) ? 0 : ImagePtr[j]);
@@ -387,6 +391,8 @@ uint32_t operateLayer3(uint32_t w, uint32_t h)
 
     return 0;
 }
+
+#endif
 
 uint8_t MaxValue(uint8_t *image1, int M, int N)
 {
@@ -469,10 +475,10 @@ uint8_t deeplearn(uint8_t* data, uint32_t w, uint32_t h)
 
     _mfence();
 
-    startVal = CSL_tscRead();
-    operateLayer3(w / 4, h / 4);
-    endVal = CSL_tscRead();
-    printf ("L3 %lf \n", (double)(endVal-startVal)/DSP_FREQ_IN_MHZ);
+//    startVal = CSL_tscRead();
+//    operateLayer3(w / 4, h / 4);
+//    endVal = CSL_tscRead();
+//    printf ("L3 %lf \n", (double)(endVal-startVal)/DSP_FREQ_IN_MHZ);
 
 #ifdef _CORE0
     startVal = CSL_tscRead();
